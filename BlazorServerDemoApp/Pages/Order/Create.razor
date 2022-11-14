@@ -9,7 +9,7 @@
     <ValidationSummary Model="@order" />
     <div class="form-group">
         <label class="control-label">Item to Order</label>
-        <select @onchange="FoodItemChange" class="form-group">
+        <select @onchange="FoodItemChange" class="form-group"> @* <InputSelect>'s @bind-Value now worke for integer values in .Net 6 *@
             <option value="">Select from this menu...</option>
             @foreach(var f in foodItems)
             {
