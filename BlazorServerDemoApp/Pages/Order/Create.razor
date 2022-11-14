@@ -9,13 +9,13 @@
     <ValidationSummary Model="@order" />
     <div class="form-group">
         <label class="control-label">Item to Order</label>
-        <select @onchange="FoodItemChange" class="form-group">
+        <InputSelect @bind-Value="order.FoodID">
             <option value="">Select from this menu...</option>
             @foreach(var f in foodItems)
             {
                 <option value="@f.Id">@f.Title</option>
             }
-        </select>
+        </InputSelect>
     </div>
     <div class="form-group">
         <label class="control-label">Quantity</label>
@@ -43,17 +43,6 @@
         foodItems = await foodData.GetFood();
     }
 
-    private void FoodItemChange(ChangeEventArgs e)
-    {
-        if(string.IsNullOrWhiteSpace(e.Value.ToString()))
-        {
-            order.FoodID = int.Parse(e.Value.ToString());
-        }
-        else
-        {
-            order.FoodID = 0;
-        }
-    }
 
     private async Task HandleValidSubmit()
     {
