@@ -1,6 +1,7 @@
 ﻿@page "/Order/Create"
 @inject IFoodData foodData
 @inject IOrderData orderData
+@inject NavigationManager navi
 
 
 <h3>Create</h3>
@@ -49,6 +50,6 @@
         order.Total = order.Quantity * foodItems.Where(ff => ff.Id == order.FoodID).First().Price;
 
         int id = await orderData.CreateOrder(order);
-        order = new OrderModel();
+        navi.NavigateTo($"Order/Display/{id}");
     }
 }
